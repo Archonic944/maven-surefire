@@ -689,6 +689,10 @@ public class SurefirePlugin
     @Override
     public String getTest()
     {
+        if ( test == null )
+        {
+            return null;
+        }
         File f = new File( test );
         if ( f.exists() && !f.isDirectory ( ) )
         {

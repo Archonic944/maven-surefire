@@ -163,7 +163,10 @@ class BooterSerializer
             properties.setProperty( RUN_ORDER, RunOrder.asString( runOrderParameters.getRunOrder() ) );
             properties.setProperty( RUN_STATISTICS_FILE, runOrderParameters.getRunStatisticsFile() );
             properties.setProperty( RUN_ORDER_RANDOM_SEED, runOrderParameters.getRunOrderRandomSeed() );
-            properties.setProperty( SPECIFIED_RUN_ORDER, runOrderParameters.getSpecifiedRunOrder() );
+            if ( runOrderParameters.getSpecifiedRunOrder() != null )
+            {
+                properties.setProperty( SPECIFIED_RUN_ORDER, runOrderParameters.getSpecifiedRunOrder() );
+            }
         }
 
         ReporterConfiguration reporterConfiguration = providerConfiguration.getReporterConfiguration();
