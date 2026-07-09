@@ -257,10 +257,11 @@ public class KPLifecycleParticipant extends AbstractMavenLifecycleParticipant {
 		argLine.setValue(argLine.getValue().replace("${surefireArgLine}", ""));
 		argLine.setValue(argLine.getValue().replace("'${jacocoArgLine}'", ""));
 		argLine.setValue(argLine.getValue().replace("${jacocoArgLine}", ""));
+		// Dropped '-XX:OnOutOfMemoryError=kill -9 %p': it kills the fork on tests that catch an OOM.
 		if (argLine != null && argLine.getValue().equals("${argLine}"))
-			argLine.setValue("'-XX:OnOutOfMemoryError=kill -9 %p' ");
+			argLine.setValue("");
 		else if (argLine != null) {
-			argLine.setValue("'-XX:OnOutOfMemoryError=kill -9 %p' " + argLine.getValue().replace("@{argLine}", "").replace("${argLine}", "").replace("${test.opts.coverage}", ""));
+			argLine.setValue(argLine.getValue().replace("@{argLine}", "").replace("${argLine}", "").replace("${test.opts.coverage}", ""));
 		}
 
 		//Now fix if we wanted jacoco or cobertura
